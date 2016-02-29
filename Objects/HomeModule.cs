@@ -25,7 +25,7 @@ namespace ToDoList
         return View["tasks_form.cshtml"];
       };
       Post["/tasks/new"] = _ => {
-        Task newTask = new Task(Request.Form["task-description"]);
+        Task newTask = new Task(Request.Form["task-description"], 0);
         newTask.Save();
         return View["success.cshtml"];
       };
@@ -68,6 +68,11 @@ namespace ToDoList
         Category category = Category.Find(Request.Form["category-id"]);
         Task task = Task.Find(Request.Form["task-id"]);
         category.AddTask(task);
+        return View["success.cshtml"];
+      };
+      Patch["tasks/{id}"] =parameters=> {
+        Task newTask = Task.Find(parameters.id);
+        newTask.UpdateChecked(Request.Form["checkbox"]);
         return View["success.cshtml"];
       };
     }
