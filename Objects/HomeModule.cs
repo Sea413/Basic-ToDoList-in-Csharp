@@ -73,7 +73,8 @@ namespace ToDoList
       Patch["tasks/{id}"] =parameters=> {
         Task newTask = Task.Find(parameters.id);
         newTask.UpdateChecked(Request.Form["checkbox"]);
-        return View["success.cshtml"];
+        List<Task> AllTasks = Task.GetAll();
+        return View["tasks.cshtml", AllTasks];
       };
     }
   }

@@ -1,4 +1,3 @@
-.red {
-  background-color: red;
-  color: green;
+#crossedOut {
+  text-decoration: line-through;
 }
